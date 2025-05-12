@@ -1,36 +1,47 @@
+// routes/perfumeRoutes.js
 const express = require('express');
-
 const router = express.Router();
+const {
+  getPerfumes,
+  createPerfume,
+  getPerfumeById,
+  updatePerfume,
+  deletePerfume
+} = require('../controllers/perfumeController');
 
-// To get all perfumes
-router.get('/', (req, res) => {
-    res.json({ mssg: 'Get all Perfumes' });
-}
-);
+/**
+ * @route   GET /api/perfumes
+ * @desc    Fetch all perfumes
+ * @access  Public
+ */
+router.get('/', getPerfumes);
 
-// Get a single perfume
-router.get('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({ mssg: `Get single perfume with id ${id}` });
-}
-);
+/**
+ * @route   POST /api/perfumes
+ * @desc    Create a new perfume
+ * @access  Public
+ */
+router.post('/', createPerfume);
 
-// POST a perfume
-router.post('/', (req, res) => {
-    res.json({ mssg: 'Post a perfume' });
-}
-);
+/**
+ * @route   GET /api/perfumes/:id
+ * @desc    Fetch a single perfume by ID
+ * @access  Public
+ */
+router.get('/:id', getPerfumeById);
 
-// DELETE a perfume
-router.delete('/:id', (req, res) => {
-    res.json({ mssg: 'Delete a perfume' });
-}
-);
+/**
+ * @route   PUT /api/perfumes/:id
+ * @desc    Update an existing perfume
+ * @access  Public
+ */
+router.put('/:id', updatePerfume);
 
-//Update a perfume
-router.patch('/:id', (req, res) => {
-    res.json({ mssg: 'Update a perfume' });
-}
-);
+/**
+ * @route   DELETE /api/perfumes/:id
+ * @desc    Delete a perfume
+ * @access  Public
+ */
+router.delete('/:id', deletePerfume);
 
 module.exports = router;
